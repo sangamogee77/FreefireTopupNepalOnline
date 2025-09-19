@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Topup Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-glow: rgba(0, 255, 255, 0.7); --secondary-glow: rgba(159, 0, 255, 0.7); --text-color: #f0f0f0; --bg-color: #0e0e0e; --glass-bg: rgba(255, 255, 255, 0.05); --glass-border: rgba(255, 255, 255, 0.2); --success-color: rgba(0, 255, 150, 0.7); --pending-color: orange; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-color); background-image: radial-gradient(circle at top left, rgba(159, 0, 255, 0.2), transparent 40%), radial-gradient(circle at bottom right, rgba(0, 255, 255, 0.2), transparent 40%); color: var(--text-color); min-height: 100vh; }
+        h1, h2, h3 { font-weight: 700; background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow)); -webkit-background-clip: text; background-clip: text; color: transparent; text-align: center;}
+        .header { background: var(--glass-bg); border-bottom: 1px solid var(--glass-border); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .hamburger { font-size: 2rem; cursor: pointer; background: none; border: none; color: var(--text-color); }
+        .side-menu { position: fixed; top: 0; left: -300px; width: 280px; height: 100%; background: #1a1a1a; padding-top: 60px; transition: left 0.3s ease-in-out; z-index: 999; }
+        .side-menu.open { left: 0; }
+        .side-menu a { display: block; padding: 15px 25px; color: var(--text-color); text-decoration: none; font-size: 1.1rem; }
+        main { padding: 80px 2rem 2rem 2rem; }
+        .view { display: none; }
+        .view.active { display: block; }
+        .container { width: 100%; max-width: 800px; margin: 2rem auto; padding: 2rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 15px; backdrop-filter: blur(10px); }
+        .form-container { display: flex; flex-direction: column; gap: 1rem; }
+        .input-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        input, select { background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); border-radius: 8px; padding: 12px 20px; color: var(--text-color); font-family: 'Poppins', sans-serif; font-size: 1rem; -webkit-appearance: none; appearance: none; width: 100%;}
+        .btn { background: linear-gradient(90deg, var(--secondary-glow), var(--primary-glow)); color: white; border: none; padding: 12px 20px; border-radius: 25px; font-size: 1rem; font-weight: 700; cursor: pointer; text-transform: uppercase; text-align: center; text-decoration: none; display: inline-block; }
+        .hidden { display: none !important; }
+        #payment-qr-code { max-width: 300px; width: 100%; margin: 1rem auto 0.5rem auto; border-radius: 10px; border: 2px solid var(--glass-border); display: block;}
+        #download-qr-btn { background: rgba(255,255,255,0.1); font-size: 0.8rem; padding: 8px 15px; margin: 0 auto; width: 300px; }
+        .order-item { background: rgba(255,255,255,0.07); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 5px solid; }
+        .order-item.pending { border-color: var(--pending-color); }
+        .order-item.completed { border-color: var(--success-color); }
+        .order-item p { margin: 0.25rem 0; font-size: 0.9rem; word-break: break-all; } .order-item strong { color: var(--primary-glow); }
+        #offer-banner-img { width: 100%; border-radius: 10px; margin-bottom: 1rem; }
+        #countdown-display { text-align: center; margin-top: 2rem; } #countdown-timer { font-size: 2.5rem; font-weight: 700; letter-spacing: 2px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; }
+        .card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.3s ease; overflow: hidden; }
+        .card:hover { transform: translateY(-5px); }
+        /* MODIFIED: Image takes full card width, and glows on hover */
+        .card img { width: 100%; height: auto; display: block; transition: filter 0.3s ease; filter: drop-shadow(0 0 3px var(--secondary-glow)); }
+        .card:hover img { filter: drop-shadow(0 0 8px var(--primary-glow)); }
+        .card .info { padding: 1rem; }
+        /* MODIFIED: Added neon text shadow */
+        .card .info h3, .card .info p { text-shadow: 0 0 4px var(--primary-glow); }
+        .card h3 { font-size: 1rem; background: none; -webkit-background-clip: initial; background-clip: initial; color: var(--text-color); }
+        .card p { font-size: 1.2rem; font-weight: 700; margin-top: 0.5rem; }
+        .card p s { font-size: 0.9rem; opacity: 0.7; font-weight: 400; }
+        .btn-back { background: rgba(255,255,255,0.1); margin-bottom: 1.5rem; }
+        #success-icon { font-size: 4rem; } .video-list a { margin-bottom: 1rem; }
+        #profile-save-message { color: var(--primary-glow); text-align: center; height: 20px; transition: opacity 0.5s; }
+    </style>
+</head>
+<body>
+    <header class="header"><h1>Free Fire Topup</h1><button class="hamburger" id="hamburger-btn">☰</button></header>
+    <nav class="side-menu" id="side-menu">
+        <a href="#" class="nav-link" data-view="new-topup-view">New Topup</a>
+        <a href="#" class="nav-link" data-view="offers-view">Offers</a>
+        <a href="#" class="nav-link" data-view="admin-videos-view">Admin Videos</a>
+        <a href="#" class="nav-link" data-view="my-orders-view">My Orders</a>
+        <a href="#" class="nav-link" data-view="my-profile-view">My Profile</a>
+        <a href="#" class="nav-link" data-view="support-view">Support</a>
+    </nav>
+    <main>
+        <div id="new-topup-view" class="view active"><div class="container" id="selection-container"><h2 style="text-align:center;">Select a Category</h2><p id="loading-msg">Loading...</p><div class="grid" id="categories-grid"></div></div></div>
+        <div id="topup-form-view" class="view"><div class="container"><h2>Complete Your Order</h2><form id="topup-form" class="form-container"><div class="input-group"><label>Player ID</label><input type="text" id="user-player-id" required></div><div class="input-group"><label>Selected Package</label><input type="text" id="package-select" readonly required></div><div class="input-group"><label for="payment-method">Payment Method</label><select id="payment-method" required><option value="" disabled selected>Select Payment</option><option value="Esewa">Esewa</option><option value="Khalti">Khalti</option><option value="IME Pay">IME Pay</option><option value="Bank">Bank</option></select></div><img id="payment-qr-code" src="" alt="QR Code" class="hidden"><button type="button" id="download-qr-btn" class="btn hidden">Download QR</button><div id="payment-fields-container" class="hidden"><div id="bank-name-group" class="input-group hidden"><label>Bank Name</label><input type="text" id="bank-name"></div><div class="input-group"><label>Payment Remark (Your Name)</label><input type="text" id="payment-remark" required></div><div class="input-group"><label>Transaction ID</label><input type="text" id="transaction-id" required></div></div><button type="submit" class="btn">Submit Order</button></form></div></div>
+        <div id="order-success-view" class="view"><div class="container" style="text-align: center;"><div id="success-icon">✅</div><h2>Order Successful!</h2><p style="margin: 1rem 0 2rem 0;">Please wait 3 to 10 minutes for processing.</p><button id="back-to-home-btn" class="btn">Back to Home</button></div></div>
+        <div id="profile-prompt-view" class="view"><div class="container" style="text-align: center;"><h2>Profile Required</h2><p style="margin: 1rem 0 2rem 0;">Please create your profile first to place an order.</p><button id="go-to-profile-btn" class="btn">Go to My Profile</button></div></div>
+        <div id="admin-videos-view" class="view"><div class="container"><h2>Admin Videos</h2><div id="promo-videos-list-user" class="video-list form-container"></div></div></div>
+        <div id="my-orders-view" class="view"><div class="container"><h2>My Orders</h2><div id="my-orders-list"></div></div></div>
+        <div id="my-profile-view" class="view"><div class="container"><h2>My Profile</h2><form id="profile-form" class="form-container"><input type="text" id="profile-name" placeholder="Name" required><input type="email" id="profile-email" placeholder="Email" required><input type="text" id="profile-player-id" placeholder="Player ID" required><button type="submit" class="btn">Save Profile</button><p id="profile-save-message"></p></form></div></div>
+        <div id="offers-view" class="view"><div class="container"><div id="offer-banner" class="hidden"><h2 id="offer-banner-title"></h2><img id="offer-banner-img" src="" alt="Special Offer"></div><div id="countdown-display" class="hidden"><h3 id="countdown-title"></h3><p id="countdown-timer"></p></div></div></div>
+        <div id="support-view" class="view"><div class="container" style="text-align: center;"><h2>Support</h2><p style="margin: 1rem 0 2rem 0;">For issues, contact us on WhatsApp.</p><a id="whatsapp-support-link" href="#" target="_blank" class="btn">Contact on WhatsApp</a></div></div>
+    </main>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const firebaseConfig = { apiKey: "AIzaSyB_Dj0ihEIiab61qSpS5FV-Ioj9BkAv3R8", authDomain: "nepali-topup-center-9acb2.firebaseapp.com", databaseURL: "https://nepali-topup-center-9acb2-default-rtdb.firebaseio.com", projectId: "nepali-topup-center-9acb2", storageBucket: "nepali-topup-center-9acb2.appspot.com", messagingSenderId: "1005889507452", appId: "1:1005889507452:web:8968836a7beb96c63f39f9", measurementId: "G-JCZY9J3H6R" };
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.database();
+
+            const hamburgerBtn = document.getElementById('hamburger-btn'), sideMenu = document.getElementById('side-menu');
+            const navLinks = document.querySelectorAll('.nav-link'), views = document.querySelectorAll('.view');
+            const selectionContainer = document.getElementById('selection-container'), topupForm = document.getElementById('topup-form'), profileForm = document.getElementById('profile-form');
+            const paymentMethodSelect = document.getElementById('payment-method'), paymentFields = document.getElementById('payment-fields-container'), bankNameGroup = document.getElementById('bank-name-group');
+            const downloadQrBtn = document.getElementById('download-qr-btn'), backToHomeBtn = document.getElementById('back-to-home-btn');
+            const goToProfileBtn = document.getElementById('go-to-profile-btn'), profileSaveMessage = document.getElementById('profile-save-message');
+            const qrCodeImg = document.getElementById('payment-qr-code'), whatsappSupportLink = document.getElementById('whatsapp-support-link');
+            let countdownInterval = null;
+
+            hamburgerBtn.addEventListener('click', () => sideMenu.classList.toggle('open'));
+            navLinks.forEach(l => { l.addEventListener('click', (e) => { e.preventDefault(); const v = l.getAttribute('data-view'); switchView(v); sideMenu.classList.remove('open'); if (v === 'new-topup-view') loadCategoriesView(); if (v === 'admin-videos-view') loadAdminVideos(); if (v === 'my-orders-view') loadUserOrders(); if (v === 'offers-view') loadOffersAndCountdown(); }); });
+            backToHomeBtn.addEventListener('click', () => { switchView('new-topup-view'); loadCategoriesView(); });
+            goToProfileBtn.addEventListener('click', () => switchView('my-profile-view'));
+            downloadQrBtn.addEventListener('click', async () => { try { const response = await fetch(qrCodeImg.src); const blob = await response.blob(); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'payment-qr.jpg'; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); } catch (e) { alert('Could not download QR.'); } });
+            paymentMethodSelect.addEventListener('change', (e) => { const m = e.target.value; if (m) { paymentFields.classList.remove('hidden'); bankNameGroup.classList.toggle('hidden', m !== 'Bank'); document.getElementById('bank-name').required = (m === 'Bank'); qrCodeImg.classList.remove('hidden'); downloadQrBtn.classList.remove('hidden'); } else { paymentFields.classList.add('hidden'); qrCodeImg.classList.add('hidden'); downloadQrBtn.classList.add('hidden'); } });
+            topupForm.addEventListener('submit', (e) => { e.preventDefault(); const p = JSON.parse(localStorage.getItem('userProfile')); if (!p || !p.email) { switchView('profile-prompt-view'); return; } const o = { playerId: document.getElementById('user-player-id').value, packageName: document.getElementById('package-select').value, userName: p.name, userEmail: p.email, paymentDetails: { method: paymentMethodSelect.value, remark: document.getElementById('payment-remark').value, transactionId: document.getElementById('transaction-id').value, bankName: paymentMethodSelect.value === 'Bank' ? document.getElementById('bank-name').value : null }, timestamp: firebase.database.ServerValue.TIMESTAMP }; db.ref('pendingOrders').push(o).then(() => { topupForm.reset(); paymentFields.classList.add('hidden'); qrCodeImg.classList.add('hidden'); downloadQrBtn.classList.add('hidden'); switchView('order-success-view'); }).catch(err => alert('Error: ' + err.message)); });
+            profileForm.addEventListener('submit', (e) => { e.preventDefault(); const p = { name: document.getElementById('profile-name').value, email: document.getElementById('profile-email').value, playerId: document.getElementById('profile-player-id').value }; localStorage.setItem('userProfile', JSON.stringify(p)); profileSaveMessage.textContent = '✅ Profile saved successfully!'; setTimeout(() => profileSaveMessage.textContent = '', 3000); });
+            
+            function switchView(id) { views.forEach(v => v.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+            async function loadCategoriesView() { const c = document.getElementById('selection-container'); c.innerHTML = '<h2>Select a Category</h2><p id="loading-msg">Loading...</p><div class="grid" id="categories-grid"></div>'; const g = document.getElementById('categories-grid'), m = document.getElementById('loading-msg'); try { const s = await db.ref('categories').once('value'); if (!s.exists()) { m.textContent = 'No categories available.'; return; } g.innerHTML = ''; m.classList.add('hidden'); s.forEach(cld => { const { name, imageUrl } = cld.val(); const d = document.createElement('div'); d.className = 'card'; d.innerHTML = `<img src="${imageUrl}" alt="${name}"><div class="info"><h3>${name}</h3></div>`; d.onclick = () => loadPackagesView(cld.key, name); g.appendChild(d); }); } catch (e) { m.textContent = 'Could not load categories.'; } }
+            
+            // ** UPDATED FUNCTION: Added back button and discount price logic **
+            async function loadPackagesView(id, name) { 
+                const c = document.getElementById('selection-container'); 
+                c.innerHTML = `<button id="back-btn" class="btn btn-back">← Back</button><h2>${name}</h2><p id="loading-msg">Loading...</p><div class="grid" id="packages-grid"></div>`; 
+                document.getElementById('back-btn').onclick = loadCategoriesView; 
+                const g = document.getElementById('packages-grid'), m = document.getElementById('loading-msg'); 
+                try { 
+                    const s = await db.ref(`packages/${id}`).once('value'); 
+                    if (!s.exists()) { m.textContent = 'No packages in this category.'; return; } 
+                    g.innerHTML = ''; 
+                    m.classList.add('hidden'); 
+                    s.forEach(cld => { 
+                        const { name, price, imageUrl, discountPrice } = cld.val(); 
+                        const d = document.createElement('div'); 
+                        d.className = 'card';
+                        
+                        // Logic to display discount price if it exists
+                        let priceHTML = `<p>${price}</p>`;
+                        if (discountPrice && discountPrice.trim() !== '') {
+                            priceHTML = `<p>${discountPrice} <s>${price}</s></p>`;
+                        }
+
+                        d.innerHTML = `<img src="${imageUrl}" alt="${name}"><div class="info"><h3>${name}</h3>${priceHTML}</div>`; 
+                        d.onclick = () => selectPackage(name); 
+                        g.appendChild(d); 
+                    }); 
+                } catch (e) { m.textContent = 'Could not load packages.'; } 
+            }
+
+            function selectPackage(name) { switchView('topup-form-view'); document.getElementById('package-select').value = name; const p = JSON.parse(localStorage.getItem('userProfile')); if (p && p.playerId) document.getElementById('user-player-id').value = p.playerId; }
+            function loadProfile() { const p = JSON.parse(localStorage.getItem('userProfile')); if (p) { document.getElementById('profile-name').value = p.name || ''; document.getElementById('profile-email').value = p.email || ''; document.getElementById('profile-player-id').value = p.playerId || ''; } }
+            async function loadAdminVideos() { const l = document.getElementById('promo-videos-list-user'); l.innerHTML = '<p>Loading...</p>'; try { const s = await db.ref('promoVideos').once('value'); if (!s.exists()) { l.innerHTML = '<p>No videos available.</p>'; return; } l.innerHTML = ''; s.forEach(c => { const { title, url } = c.val(); const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.className = 'btn'; a.textContent = `Watch: ${title}`; l.appendChild(a); }); } catch (e) { l.innerHTML = '<p>Could not load videos.</p>'; } }
+            
+            async function loadUserOrders() { 
+                const list = document.getElementById('my-orders-list'); 
+                list.innerHTML = '<p>Loading...</p>'; 
+                const profile = JSON.parse(localStorage.getItem('userProfile')); 
+                if (!profile || !profile.playerId) { list.innerHTML = '<p>Save your Player ID to see orders.</p>'; return; } 
+                
+                const processSnapshot = (snapshot, status) => {
+                    if (!snapshot.exists()) return [];
+                    const ordersArray = [];
+                    snapshot.forEach(child => {
+                        const order = child.val();
+                        order.status = status;
+                        ordersArray.push(order);
+                    });
+                    return ordersArray;
+                };
+
+                const pendingSnap = await db.ref('pendingOrders').orderByChild('playerId').equalTo(profile.playerId).once('value');
+                const completedSnap = await db.ref('completedOrders').orderByChild('playerId').equalTo(profile.playerId).once('value');
+
+                const pendingOrders = processSnapshot(pendingSnap, 'Pending');
+                const completedOrders = processSnapshot(completedSnap, 'Completed');
+                const allOrders = [...pendingOrders, ...completedOrders].sort((a, b) => b.timestamp - a.timestamp);
+
+                if (allOrders.length === 0) {
+                    list.innerHTML = '<p>You have no orders.</p>';
+                    return;
+                }
+
+                list.innerHTML = '';
+                allOrders.forEach(order => {
+                    const item = document.createElement('div');
+                    item.className = `order-item ${order.status.toLowerCase()}`;
+                    let details = `<p><strong>Package:</strong> ${order.packageName}</p><p><strong>Status:</strong> ${order.status}</p>`;
+                    if(order.paymentDetails) {
+                        details += `<p><strong>Method:</strong> ${order.paymentDetails.method}</p>`;
+                        if(order.paymentDetails.bankName) details += `<p><strong>Bank:</strong> ${order.paymentDetails.bankName}</p>`;
+                        details += `<p><strong>Remark:</strong> ${order.paymentDetails.remark}</p><p><strong>Transaction ID:</strong> ${order.paymentDetails.transactionId}</p>`;
+                    }
+                    item.innerHTML = details;
+                    list.appendChild(item);
+                });
+            }
+
+            async function loadOffersAndCountdown() { const oB = document.getElementById('offer-banner'), oI = document.getElementById('offer-banner-img'), oT = document.getElementById('offer-banner-title'); const cD = document.getElementById('countdown-display'), cTitle = document.getElementById('countdown-title'), cTimer = document.getElementById('countdown-timer'); oB.classList.add('hidden'); cD.classList.add('hidden'); db.ref('offers').limitToLast(1).once('value').then(s => { if (s.exists()) { s.forEach(c => { const { title, imageUrl } = c.val(); oT.textContent = title; oI.src = imageUrl; oB.classList.remove('hidden'); }); } }); if (countdownInterval) clearInterval(countdownInterval); db.ref('countdown').once('value').then(s => { if (s.exists()) { const { title, endDate } = s.val(); cTitle.textContent = title; cD.classList.remove('hidden'); const eT = new Date(endDate).getTime(); countdownInterval = setInterval(() => { const n = new Date().getTime(), d = eT - n; if (d < 0) { clearInterval(countdownInterval); cTimer.textContent = "EXPIRED"; return; } const ds = Math.floor(d / 864e5), hs = Math.floor((d % 864e5) / 36e5), ms = Math.floor((d % 36e5) / 6e4), ss = Math.floor((d % 6e4) / 1000); cTimer.textContent = `${ds}d ${hs}h ${ms}m ${ss}s`; }, 1000); } }); }
+            async function loadSiteSettings() { const s = await db.ref('settings').once('value'); if(s.exists()){ const { whatsappNumber, qrCodeUrl } = s.val(); if(whatsappNumber) whatsappSupportLink.href = `https://wa.me/${whatsappNumber}`; if(qrCodeUrl) qrCodeImg.src = qrCodeUrl; } }
+            
+            loadSiteSettings();
+            loadCategoriesView(); 
+            loadProfile(); 
+            switchView('new-topup-view');
+        });
+    </script>
+</body>
+</html>
